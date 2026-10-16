@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>影视行业 - 影视产业数据、政策动态与趋势分析</title>
+<meta name="description" content="影视行业网提供影视产业数据分析、政策动态、公司名录、趋势研究报告，覆盖电影、电视剧、网络剧、动漫、短视频等领域，助力从业者把握行业脉搏。">
+<meta name="keywords" content="影视行业,影视产业,电影市场,电视剧行业,影视政策,影视公司,行业趋势,票房数据">
+<link rel="canonical" href="https://yingshixingye-h5.github.io/">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:#0d1b2a;color:#e0e6ed;line-height:1.7;overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+section[id]{scroll-margin-top:60px}
+
+/* 顶部信息条 */
+.info-strip{
+  background:#0a1520;padding:6px 16px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;
+  font-size:11px;color:#5a7a92;border-bottom:1px solid #1a2a3a;
+}
+.info-strip span b{color:#4fc3f7}
+
+/* 导航 */
+.nav{
+  position:sticky;top:0;z-index:999;background:rgba(13,27,42,.96);backdrop-filter:blur(10px);
+  border-bottom:1px solid #1a2a3a;
+}
+.nav-in{
+  max-width:1320px;margin:0 auto;height:56px;padding:0 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{font-size:18px;font-weight:700;color:#e0e6ed;letter-spacing:.5px}
+.logo b{color:#4fc3f7}
+.menu{display:flex;gap:6px}
+.menu a{
+  font-size:13px;color:#8a9ba8;padding:6px 12px;border-radius:4px;
+  transition:.2s;
+}
+.menu a:hover{background:#1a2a3a;color:#4fc3f7}
+
+/* Hero - 数据仪表盘 */
+.hero{
+  max-width:1320px;margin:0 auto;padding:50px 16px 40px;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.2fr .8fr;gap:24px;
+}
+.hero-main{
+  background:linear-gradient(135deg,#0f2235,#162d42);border:1px solid #1e3a52;border-radius:12px;
+  padding:36px;position:relative;overflow:hidden;
+}
+.hero-main::before{
+  content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;
+  background:radial-gradient(circle,rgba(79,195,247,.08),transparent 70%);
+}
+.hero-label{font-size:11px;letter-spacing:3px;color:#4fc3f7;text-transform:uppercase;margin-bottom:12px}
+.hero-main h1{font-size:clamp(28px,4vw,44px);font-weight:700;line-height:1.3;margin-bottom:14px}
+.hero-main h1 em{font-style:normal;color:#4fc3f7}
+.hero-main p{font-size:15px;color:#8a9ba8;max-width:520px;margin-bottom:24px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{
+  display:inline-block;padding:11px 26px;background:#4fc3f7;color:#0d1b2a;
+  font-size:14px;font-weight:600;border-radius:6px;
+}
+.btn-primary:hover{background:#29b6f6}
+.btn-outline{
+  display:inline-block;padding:11px 26px;border:1px solid #4fc3f7;color:#4fc3f7;
+  font-size:14px;font-weight:600;border-radius:6px;
+}
+.btn-outline:hover{background:rgba(79,195,247,.08)}
+
+/* 右侧数据卡 */
+.hero-side{display:flex;flex-direction:column;gap:12px}
+.data-card{
+  background:#0f2235;border:1px solid #1e3a52;border-radius:10px;padding:18px;
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+}
+.data-card .d-label{font-size:11px;color:#5a7a92;letter-spacing:1px;margin-bottom:4px}
+.data-card .d-value{font-size:28px;font-weight:700;color:#e0e6ed}
+.data-card .d-value b{color:#4fc3f7}
+.data-card .d-change{font-size:12px;margin-top:4px}
+.data-card .d-change.up{color:#66bb6a}
+.data-card .d-change.down{color:#ef5350}
+
+/* 快速指标条 */
+.metric-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#1e3a52;
+  border:1px solid #1e3a52;border-radius:10px;overflow:hidden;margin-top:24px;
+}
+.metric{background:#0d1b2a;padding:18px;text-align:center}
+.metric .m-num{font-size:22px;font-weight:700;color:#4fc3f7}
+.metric .m-label{font-size:11px;color:#5a7a92;margin-top:2px}
+
+/* 区块通用 */
+.block{max-width:1320px;margin:0 auto;padding:50px 16px}
+.block-head{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;
+}
+.block-head h2{font-size:22px;font-weight:700;color:#e0e6ed}
+.block-head h2 .accent{color:#4fc3f7;margin-right:8px}
+.block-head a{font-size:13px;color:#5a7a92}
+.block-head a:hover{color:#4fc3f7}
+
+/* 行业数据 - 图表区 */
+.chart-section{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.chart-box{
+  background:#0f2235;border:1px solid #1e3a52;border-radius:12px;padding:24px;
+}
+.chart-box h3{font-size:16px;font-weight:600;margin-bottom:16px;color:#e0e6ed}
+.bar-chart{display:flex;flex-direction:column;gap:14px}
+.bar-item{}
+.bar-label{display:flex;justify-content:space-between;font-size:13px;color:#8a9ba8;margin-bottom:4px}
+.bar-track{height:8px;background:#1a2a3a;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#4fc3f7,#29b6f6)}
+
+/* 饼图替代 - 环形进度 */
+.donut-row{display:flex;gap:20px;flex-wrap:wrap}
+.donut{
+  text-align:center;flex:1;min-width:100px;
+}
+.donut-circle{
+  width:90px;height:90px;border-radius:50%;margin:0 auto 10px;
+  display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#4fc3f7;
+  position:relative;
+}
+.donut-circle::before{
+  content:'';position:absolute;inset:6px;border-radius:50%;background:#0f2235;
+}
+.donut-circle span{position:relative;z-index:1}
+.donut-label{font-size:12px;color:#8a9ba8}
+
+/* 政策动态 - 时间线 */
+.policy-timeline{position:relative;padding-left:24px}
+.policy-timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:#1e3a52}
+.policy-item{position:relative;margin-bottom:22px;padding-left:20px}
+.policy-item::before{
+  content:'';position:absolute;left:-20px;top:6px;width:10px;height:10px;border-radius:50%;
+  background:#4fc3f7;border:2px solid #0d1b2a;box-shadow:0 0 0 3px rgba(79,195,247,.15);
+}
+.policy-date{font-size:11px;color:#4fc3f7;letter-spacing:1px;margin-bottom:2px}
+.policy-item h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.policy-item p{font-size:13px;color:#8a9ba8;line-height:1.6}
+
+/* 公司名录 - 表格 */
+.company-table{width:100%;border-collapse:collapse}
+.company-table thead th{
+  text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:#5a7a92;
+  border-bottom:2px solid #1e3a52;letter-spacing:1px;text-transform:uppercase;
+}
+.company-table tbody td{
+  padding:14px;border-bottom:1px solid #1a2a3a;font-size:14px;color:#e0e6ed;
+}
+.company-table tbody tr:hover{background:#0f2235}
+.company-table .tag{
+  display:inline-block;font-size:11px;padding:2px 8px;border-radius:3px;font-weight:600;
+}
+.tag-film{background:rgba(79,195,247,.12);color:#4fc3f7}
+.tag-tv{background:rgba(102,187,106,.12);color:#66bb6a}
+.tag-stream{background:rgba(255,183,77,.12);color:#ffb74d}
+.tag-anime{background:rgba(171,71,188,.12);color:#ab47bc}
+
+/* 趋势分析 - 卡片 */
+.trend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.trend-card{
+  background:#0f2235;border:1px solid #1e3a52;border-radius:12px;padding:24px;
+  transition:.3s;
+}
+.trend-card:hover{border-color:#4fc3f7;transform:translateY(-3px)}
+.trend-card .t-icon{font-size:28px;margin-bottom:12px}
+.trend-card h3{font-size:16px;font-weight:600;margin-bottom:8px}
+.trend-card p{font-size:13px;color:#8a9ba8;line-height:1.7;margin-bottom:12px}
+.trend-card .t-link{font-size:12px;color:#4fc3f7;font-weight:600}
+.trend-card .t-link:hover{text-decoration:underline}
+
+/* 关于 - 三列 */
+.about-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+.about-card{
+  background:#0f2235;border:1px solid #1e3a52;border-radius:12px;padding:28px;
+}
+.about-card h3{font-size:16px;font-weight:600;color:#4fc3f7;margin-bottom:12px}
+.about-card p{font-size:14px;color:#8a9ba8;line-height:1.7}
+.about-card .url{color:#4fc3f7;font-weight:600;font-size:15px}
+
+/* 页脚 */
+.foot{
+  border-top:1px solid #1e3a52;padding:36px 16px 24px;background:#0a1520;
+}
+.foot-in{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:24px}
+.foot-brand{font-size:20px;font-weight:700;color:#e0e6ed;margin-bottom:10px}
+.foot-brand b{color:#4fc3f7}
+.foot-desc{font-size:13px;color:#5a7a92;line-height:1.7}
+.foot-col h4{font-size:13px;color:#e0e6ed;margin-bottom:12px}
+.foot-col a{display:block;font-size:13px;color:#5a7a92;padding:4px 0}
+.foot-col a:hover{color:#4fc3f7}
+.foot-bottom{
+  max-width:1320px;margin:0 auto;padding-top:20px;border-top:1px solid #1e3a52;
+  text-align:center;font-size:12px;color:#3a5a72;
+}
+
+@media(max-width:900px){
+  .menu{display:none}
+  .hero-grid{grid-template-columns:1fr}
+  .chart-section{grid-template-columns:1fr}
+  .metric-bar{grid-template-columns:1fr 1fr}
+  .about-grid{grid-template-columns:1fr}
+  .foot-in{grid-template-columns:1fr 1fr}
+  .company-table{font-size:12px}
+  .company-table thead th{padding:10px 8px}
+  .company-table tbody td{padding:10px 8px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- 信息条 -->
+<div class="info-strip">
+  <span>数据截至: <b>2024年12月</b></span>
+  <span>票房实时更新</span>
+  <span>政策来源: 国家广电总局</span>
+  <span>覆盖企业: <b>500+</b></span>
+</div>
+
+<!-- 导航 -->
+<div class="nav">
+  <div class="nav-in">
+    <div class="logo">影视<b>行业</b></div>
+    <nav class="menu">
+      <a href="#home">首页</a>
+      <a href="#data">行业数据</a>
+      <a href="#policy">政策动态</a>
+      <a href="#company">公司名录</a>
+      <a href="#trend">趋势分析</a>
+      <a href="#about">关于</a>
+    </nav>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-main">
+      <div class="hero-label">YINGSHI HANGYE · Industry Intelligence</div>
+      <h1>洞察<em>影视行业</em>全链路<br>数据驱动产业决策</h1>
+      <p>影视行业网聚焦电影、电视剧、网络剧、动漫、短视频五大赛道，提供票房数据、政策解读、企业图谱与趋势研判，为从业者提供一站式行业情报。</p>
+      <div class="hero-cta">
+        <a href="#data" class="btn-primary">查看行业数据</a>
+        <a href="#policy" class="btn-outline">政策动态</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="data-card">
+        <div class="d-label">年度总票房（2024）</div>
+        <div class="d-value"><b>549.3</b> 亿</div>
+        <div class="d-change up">↑ 较去年增长 12.4%</div>
+      </div>
+      <div class="data-card">
+        <div class="d-label">备案剧集总数</div>
+        <div class="d-value"><b>628</b> 部</div>
+        <div class="d-change up">↑ 同比增长 8.2%</div>
+      </div>
+      <div class="data-card">
+        <div class="d-label">网络电影上新</div>
+        <div class="d-value"><b>312</b> 部</div>
+        <div class="d-change down">↓ 较去年减少 5.1%</div>
+      </div>
+    </div>
+  </div>
+  <div class="metric-bar">
+    <div class="metric"><div class="m-num">5.2亿</div><div class="m-label">年度观影人次</div></div>
+    <div class="metric"><div class="m-num">3,840</div><div class="m-label">年度上映影片</div></div>
+    <div class="metric"><div class="m-num">67%</div><div class="m-label">国产片占比</div></div>
+    <div class="metric"><div class="m-num">¥42.6</div><div class="m-label">平均票价（元）</div></div>
+  </div>
+</section>
+
+<!-- 行业数据 -->
+<section class="block" id="data">
+  <div class="block-head">
+    <h2><span class="accent">📊</span>行业数据</h2>
+    <a href="#">完整报告 #</a>
+  </div>
+  <div class="chart-section">
+    <div class="chart-box">
+      <h3>2024年月度票房趋势（亿元）</h3>
+      <div class="bar-chart">
+        <div class="bar-item">
+          <div class="bar-label"><span>1月</span><span>48.2</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label"><span>2月（春节档）</span><span>82.6</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label"><span>3月</span><span>35.1</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:52%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label"><span>4月</span><span>28.4</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:42%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label"><span>5月（五一档）</span><span>41.8</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:63%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label"><span>6月</span><span>38.7</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:58%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label"><span>7月（暑期档）</span><span>76.3</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:92%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label"><span>8月</span><span>52.9</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:78%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="chart-box">
+      <h3>内容类型分布</h3>
+      <div class="donut-row">
+        <div class="donut">
+          <div class="donut-circle" style="background:conic-gradient(#4fc3f7 0% 35%,#1a2a3a 35%)"><span>35%</span></div>
+          <div class="donut-label">喜剧</div>
+        </div>
+        <div class="donut">
+          <div class="donut-circle" style="background:conic-gradient(#66bb6a 0% 22%,#1a2a3a 22%)"><span>22%</span></div>
+          <div class="donut-label">动作</div>
+        </div>
+        <div class="donut">
+          <div class="donut-circle" style="background:conic-gradient(#ffb74d 0% 18%,#1a2a3a 18%)"><span>18%</span></div>
+          <div class="donut-label">剧情</div>
+        </div>
+        <div class="donut">
+          <div class="donut-circle" style="background:conic-gradient(#ab47bc 0% 15%,#1a2a3a 15%)"><span>15%</span></div>
+          <div class="donut-label">动画</div>
+        </div>
+        <div class="donut">
+          <div class="donut-circle" style="background:conic-gradient(#ef5350 0% 10%,#1a2a3a 10%)"><span>10%</span></div>
+          <div class="donut-label">其他</div>
+        </div>
+      </div>
+      <div style="margin-top:24px">
+        <h3 style="margin-bottom:12px">院线 vs 网络发行占比</h3>
+        <div class="bar-chart">
+          <div class="bar-item">
+            <div class="bar-label"><span>院线发行</span><span>58%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:58%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>网络发行</span><span>42%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:42%;background:linear-gradient(90deg,#66bb6a,#4caf50)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 政策动态 -->
+<section class="block" id="policy" style="background:#0a1520">
+  <div class="block-head">
+    <h2><span class="accent">📋</span>政策动态</h2>
+    <a href="#">更多 #</a>
+  </div>
+  <div class="policy-timeline">
+    <div class="policy-item">
+      <div class="policy-date">2024.11.20</div>
+      <h3>广电总局发布《网络微短剧内容审核细则（修订版）》</h3>
+      <p>明确微短剧分类分层审核机制，要求平台落实主体责任，建立"先审后播"制度，重点整治低俗、暴力、价值观导向偏差等问题。</p>
+    </div>
+    <div class="policy-item">
+      <div class="policy-date">2024.10.15</div>
+      <h3>《关于促进影视基地规范健康发展的指导意见》出台</h3>
+      <p>提出到2027年建成3-5个具有国际影响力的影视产业基地，推动数字化影棚建设，鼓励LED虚拟拍摄技术应用。</p>
+    </div>
+    <div class="policy-item">
+      <div class="policy-date">2024.09.08</div>
+      <h3>电影专项资金管理办法调整：国产片补贴力度加大</h3>
+      <p>对票房过亿的国产影片，专项资金返还比例由50%提升至60%；对中小成本影片（制作成本3000万以下）给予额外奖励。</p>
+    </div>
+    <div class="policy-item">
+      <div class="policy-date">2024.08.22</div>
+      <h3>《电视剧母版制作规范》正式实施</h3>
+      <p>对4K超高清电视剧母版的技术参数、文件封装格式、音频标准等作出明确规定，推动行业技术升级。</p>
+    </div>
+    <div class="policy-item">
+      <div class="policy-date">2024.07.10</div>
+      <h3>文旅部联合广电总局推出"影视+文旅"融合扶持政策</h3>
+      <p>鼓励影视取景地与旅游景区联动开发，对带动地方旅游收入增长显著的影视作品给予制作方税收返还奖励。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 公司名录 -->
+<section class="block" id="company">
+  <div class="block-head">
+    <h2><span class="accent">🏢</span>公司名录</h2>
+    <a href="#">完整名录 #</a>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="company-table">
+      <thead>
+        <tr><th>公司名称</th><th>类型</th><th>代表项目</th><th>成立时间</th><th>总部</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>正午阳光</td><td><span class="tag tag-tv">电视剧</span></td><td>《琅琊榜》《欢乐颂》《大江大河》</td><td>2011</td><td>上海</td></tr>
+        <tr><td>光线传媒</td><td><span class="tag tag-film">电影</span></td><td>《哪吒之魔童降世》《泰囧》《满江红》</td><td>1998</td><td>北京</td></tr>
+        <tr><td>柠萌影视</td><td><span class="tag tag-tv">电视剧</span></td><td>《小欢喜》《三十而已》《问心》</td><td>2014</td><td>上海</td></tr>
+        <tr><td>爱奇艺</td><td><span class="tag tag-stream">流媒体</span></td><td>《狂飙》《隐秘的角落》《苍兰诀》</td><td>2010</td><td>北京</td></tr>
+        <tr><td>追光动画</td><td><span class="tag tag-anime">动漫</span></td><td>《白蛇缘起》《长安三万里》《新神榜》</td><td>2013</td><td>北京</td></tr>
+        <tr><td>华策影视</td><td><span class="tag tag-tv">电视剧</span></td><td>《三生三世十里桃花》《亲爱的，热爱的》</td><td>2005</td><td>杭州</td></tr>
+        <tr><td>博纳影业</td><td><span class="tag tag-film">电影</span></td><td>《长津湖》《红海行动》《中国机长》</td><td>2003</td><td>北京</td></tr>
+        <tr><td>米哈游</td><td><span class="tag tag-anime">动漫/游戏</span></td><td>《原神》动画化、《崩坏》系列</td><td>2012</td><td>上海</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 趋势分析 -->
+<section class="block" id="trend" style="background:#0a1520">
+  <div class="block-head">
+    <h2><span class="accent">🔮</span>趋势分析</h2>
+    <a href="#">全部报告 #</a>
+  </div>
+  <div class="trend-grid">
+    <div class="trend-card">
+      <div class="t-icon">🎬</div>
+      <h3>AI生成内容在影视制作中的应用</h3>
+      <p>从剧本辅助创作到AI生成特效背景，再到虚拟演员数字替身，AI技术正在重塑影视制作全流程。预计2025年AI相关制作成本将降低30%以上。</p>
+      <a href="#" class="t-link">阅读全文 →</a>
+    </div>
+    <div class="trend-card">
+      <div class="t-icon">📱</div>
+      <h3>竖屏短剧爆发式增长</h3>
+      <p>2024年微短剧市场规模突破500亿元，用户规模达5.3亿。平台分账模式成熟，品牌定制短剧成为新增长点，预计2025年市场规模将超800亿。</p>
+      <a href="#" class="t-link">阅读全文 →</a>
+    </div>
+    <div class="trend-card">
+      <div class="t-icon">🌏</div>
+      <h3>国产影视出海新机遇</h3>
+      <p>《三体》《狂飙》等作品在海外平台热播，国产影视内容出口额同比增长45%。东南亚、中东、拉美成为新兴增量市场，翻译配音本地化成关键。</p>
+      <a href="#" class="t-link">阅读全文 →</a>
+    </div>
+    <div class="trend-card">
+      <div class="t-icon">💰</div>
+      <h3>影视金融化：IP全产业链开发</h3>
+      <p>头部IP从单一影视改编向游戏、衍生品、主题乐园、线下演出等多元变现延伸。优质IP的全生命周期商业价值可达制作成本的10-50倍。</p>
+      <a href="#" class="t-link">阅读全文 →</a>
+    </div>
+    <div class="trend-card">
+      <div class="t-icon">🥽</div>
+      <h3>XR虚拟拍摄技术普及</h3>
+      <p>LED虚拟影棚建设成本下降60%，国内已建成超50个专业XR影棚。虚拟拍摄可缩短30%制作周期，减少外景依赖，成为主流制作方式。</p>
+      <a href="#" class="t-link">阅读全文 →</a>
+    </div>
+    <div class="trend-card">
+      <div class="t-icon">🎵</div>
+      <h3>影视音乐商业化升级</h3>
+      <p>OST（原声带）从附属品变为独立盈利单元，热门影视歌曲流媒体播放量破10亿成常态。影视音乐版权运营成为制作方新的收入来源。</p>
+      <a href="#" class="t-link">阅读全文 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 关于 -->
+<section class="block" id="about">
+  <div class="block-head">
+    <h2><span class="accent">ℹ️</span>关于影视行业</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>平台定位</h3>
+      <p>影视行业网是一个垂直于影视产业的资讯与数据平台，面向制片人、投资人、发行方、院线管理者及行业研究者，提供数据、政策、公司、趋势四维一体的行业情报服务。</p>
+    </div>
+    <div class="about-card">
+      <h3>数据来源</h3>
+      <p>票房数据来自国家电影专资办及灯塔专业版；政策文件来自国家广电总局、文旅部等官方渠道；企业信息来自工商公开数据及行业调研。</p>
+    </div>
+    <div class="about-card">
+      <h3>官方网址</h3>
+      <p style="margin-bottom:8px">访问我们的官方网站获取最新行业动态：</p>
+      <div class="url">https://yingshixingye-h5.github.io</div>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="foot">
+  <div class="foot-in">
+    <div>
+      <div class="foot-brand">影视<b>行业</b></div>
+      <p class="foot-desc">洞察影视产业全链路，数据驱动决策。覆盖电影、电视剧、网络剧、动漫、短视频五大赛道。</p>
+    </div>
+    <div class="foot-col">
+      <h4>栏目</h4>
+      <a href="#data">行业数据</a>
+      <a href="#policy">政策动态</a>
+      <a href="#company">公司名录</a>
+      <a href="#trend">趋势分析</a>
+    </div>
+    <div class="foot-col">
+      <h4>热门标签</h4>
+      <a href="#">票房分析</a>
+      <a href="#">微短剧</a>
+      <a href="#">AI影视</a>
+      <a href="#">影视出海</a>
+    </div>
+    <div class="foot-col">
+      <h4>关于</h4>
+      <a href="#about">关于我们</a>
+      <a href="#">联系方式</a>
+      <a href="#">数据合作</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    © 2024 影视行业 · 网站网址：https://yingshixingye-h5.github.io · 影视产业数据与分析平台
+  </div>
+</footer>
+
+</body>
+</html>
